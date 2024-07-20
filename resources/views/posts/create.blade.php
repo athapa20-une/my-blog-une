@@ -1,5 +1,7 @@
 @extends('master')
 
+@section('title', $title ?? 'My Blog || UNE')
+
 @section('content')
 <header class="header">
     <h1>Create New Post</h1>

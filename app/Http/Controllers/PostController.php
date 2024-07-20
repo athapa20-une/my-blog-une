@@ -12,8 +12,9 @@ class PostController extends Controller
      */
     public function index()
     {
+        $title = 'My Blog | List Posts';
         $posts = Post::orderBy('created_at', 'desc')->get();
-        return view('posts.index', compact('posts'));
+        return view('posts.index', compact('posts','title'));
     }
 
     /**
@@ -21,7 +22,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        $title = 'My Blog | Add New Posts';
+        return view('posts.create', compact('title'));
     }
 
     /**
@@ -46,9 +48,9 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Post $post)
     {
-        //
+        return view('posts.show', compact('post'));
     }
 
     /**
@@ -56,7 +58,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.edit', compact('post'));
+        $title = 'My Blog | Edit Posts';
+        return view('posts.edit', compact('post','title'));
     }
 
     /**
