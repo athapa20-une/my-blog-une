@@ -5,6 +5,7 @@
     <h1>Posts Listing</h1>
 </header>
 <main class="main-content">
+<a href="{{ route('posts.create') }}" class="btn btn-edit">Add New</a>
     <section class="table-container">
         <table class="listing-table">
             <thead>
@@ -24,8 +25,12 @@
                         <td>{{ Str::limit($post->content, 50) }}</td>
                         <td>{{ $post->status == 1 ? 'Published' : 'Draft' }}</td>
                         <td>
-                            <a href="#" class="btn btn-edit">Edit</a>
-                            <a href="#" class="btn btn-delete">Delete</a>
+                            <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-edit">Edit</a>
+                            <form action="{{ route('posts.destroy', $post->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-delete" onclick="return confirm('Are you sure you want to delete this post?');">Delete</button>
+                            </form>                        
                         </td>
                     </tr>
                 @endforeach
