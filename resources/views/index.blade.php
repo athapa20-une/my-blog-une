@@ -23,7 +23,6 @@
         <ul>
             <li>Name: {{ Auth::user()->name }}</li>
             <li>Email: {{ Auth::user()->email }}</li>
-            <li>Student Id: 220277013</li>
             <li>Role: {{ Auth::user()->getRole() }}</li>
         </ul>
         <p>You can add, edit, and manage your content.</p>
