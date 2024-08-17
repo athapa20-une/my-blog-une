@@ -5,15 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use MongoDB\Laravel\Eloquent\Model;
 
-class Post extends Model
+class Module extends Model
 {
     use HasFactory;
 
-    protected $table = 'posts';
+    protected $collection = 'modules'; // MongoDB collection name
 
-    protected $fillable = [
-        'title',
-        'content',
-        'status',
-    ];
+    protected $fillable = ['name', 'description'];
 }
