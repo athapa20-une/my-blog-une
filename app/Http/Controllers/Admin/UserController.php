@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Module;
 use App\Models\Permission;
 use App\Models\Role;
@@ -95,11 +96,10 @@ class UserController extends Controller
         $modules = Module::get(); // Get all modules with their permissions
         $permissions = Permission::get(); // Get all modules with their permissions
         $userRole = DB::table('role_user')->where('user_id', $user->id)->first(); // Assuming a user has one role
-        // dd($user->id );
+        // dd($userRole['role_id']);
 
         $userPermissions = DB::table('role_permission')
             ->where('role_id', $userRole['role_id'])
-            ->where('user_id', $user->id)
             ->get()
             ->groupBy('module_id')
             ->map(function ($permissions) {

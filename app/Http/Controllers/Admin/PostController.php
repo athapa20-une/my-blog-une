@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -13,7 +15,8 @@ class PostController extends Controller
     public function index()
     {
         $title = 'My Blog | List Posts';
-        $posts = Post::orderBy('created_at', 'desc')->get();
+        $posts = Post::orderBy('created_at', 'desc')->where('user_id',Auth::id())->get();
+        // dd($posts);
         return view('posts.index', compact('posts','title'));
     }
 

@@ -15,5 +15,11 @@ class Post extends Model
         'title',
         'content',
         'status',
+        'user_id',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', '_id'); // Adjust '_id' if using MongoDB
+    }
 }

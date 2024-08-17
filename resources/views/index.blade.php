@@ -7,13 +7,24 @@
     <header class="header">
         <h1>Dashboard</h1>
     </header>
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+    @if(session('error'))
+        <div class="alert alert-warning">
+            {{ session('error') }}
+        </div>
+    @endif
     <section class="content user-info">
         <h2>Welcome to the My Basic Crud Blog - UNE</h2>
         <p>Logged In as:</p>
         <ul>
-            <li>Name: Anish Thapa</li>
-            <li>Email: athapa20@myune.edu.au</li>
+            <li>Name: {{ Auth::user()->name }}</li>
+            <li>Email: {{ Auth::user()->email }}</li>
             <li>Student Id: 220277013</li>
+            <li>Role: {{ Auth::user()->getRole() }}</li>
         </ul>
         <p>You can add, edit, and manage your content.</p>
     </section>

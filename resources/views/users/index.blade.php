@@ -6,7 +6,9 @@
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
     <header class="mb-4">
         <h1>Users Management</h1>
-        <a href="{{ route('users.create') }}" class="btn btn-primary">Create New User</a>
+        @if(Auth::user()->hasPermission('Users','Create') )
+            <a href="{{ route('users.create') }}" class="btn btn-primary">Create New User</a>
+        @endif
     </header>
 
     @if(session('success'))
@@ -34,13 +36,18 @@
                         <td>{{ $user->email }}</td>
                         {{-- <td>{{ $user->roles->pluck('name')->join(', ') }}</td> --}}
                         <td>
-                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                            @if(Auth::user()->hasPermission('Users','Edit') )
+
+                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                            @endif
+                            @if(Auth::user()->hasPermission('Users','Delete') )
 
                             <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="d-inline-block" onsubmit="return confirm('Are you sure you want to delete this user?');">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                             </form>
+                            @endif
                         </td>
                     </tr>
                 @empty

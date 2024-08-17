@@ -9,7 +9,9 @@
         <h2>{{ $post->title }}</h2>
         <p>{{ $post->content }}</p>
         <p>Status: {{ $post->status == 1 ? 'Published' : 'Draft' }}</p>
-        <a href="{{ route('posts.index') }}" class="btn btn-back">Back to List</a>
+        @if(Auth::user()->hasPermission('Posts','Show') )
+            <a href="{{ route('posts.index') }}" class="btn btn-back">Back to List</a>
+        @endif
     </section>
 </main>
 @endsection
