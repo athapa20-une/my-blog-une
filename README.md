@@ -89,14 +89,9 @@ Before you begin, ensure you have the following installed:
 - **Admin Access**: Only users with the admin role can manage users, assign roles, and configure permissions.
 - **User Access**: Regular users can create, edit, or delete posts based on their assigned permissions.
 
-## Contribution
-
-If you would like to contribute to this project, please fork the repository and submit a pull request. We welcome contributions that enhance functionality, improve code quality, or fix bugs.
 
 ## License
 
-This project is open-source and available under the [MIT License](https://opensource.org/licenses/MIT).
-
----
-
-This README now accurately reflects your use of MongoDB as the database, along with the updated installation and configuration instructions.
+- **Name:** Anish Thapa
+- **Email**: athapa20@myune.edu.au
+- **Student Id**: 220277013
