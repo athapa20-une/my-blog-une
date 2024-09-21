@@ -12,11 +12,12 @@ use Illuminate\Support\Facades\DB;
 use MongoDB\Laravel\Eloquent\Casts\ObjectId;
 use MongoDB\Laravel\Eloquent\Model;
 use MongoDB\Laravel\Relations\HasMany;
+use Laravel\Sanctum\HasApiTokens;
 
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
