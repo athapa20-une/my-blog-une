@@ -11,28 +11,41 @@ class PostController extends Controller
     // Retrieve a list of all blog posts
     public function index()
     {
-        $posts = Post::all();
-        return response()->json([
-            'data' => $posts,
-            'message' => 'success'
-        ], 200);
+        try {
+            $posts = Post::all();
+
+            return response()->json([
+                'data' => $posts,
+                'message' => 'success'
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'An error occurred while retrieving posts.',
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
 
     // Retrieve details of a single blog post
     public function show($id)
     {
-        $post = Post::find($id);
+        try {
+            $post = Post::findOrFail($id);
 
-        if (!$post) {
             return response()->json([
-                'message' => 'failure'
+                'data' => $post,
+                'message' => 'success'
+            ], 200);
+        } catch (ModelNotFoundException $e) {
+            return response()->json([
+                'message' => 'Post not found',
             ], 404);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'An error occurred while retrieving the post.',
+                'error' => $e->getMessage()
+            ], 500);
         }
-
-        return response()->json([
-            'data' => $post,
-            'message' => 'success'
-        ], 200);    
     }
 
 }
