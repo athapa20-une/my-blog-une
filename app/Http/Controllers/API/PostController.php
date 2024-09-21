@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -30,7 +31,7 @@ class PostController extends Controller
     public function show($id)
     {
         try {
-            $post = Post::findOrFail($id);
+            $post = Post::with('user')->findOrFail($id);
 
             return response()->json([
                 'data' => $post,
